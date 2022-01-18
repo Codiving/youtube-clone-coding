@@ -41,12 +41,12 @@ const SidebarDark = styled("div")(props => {
 });
 
 const Sidebar = props => {
-  const { children, open } = props;
+  const { children, open, onHandleOpen } = props;
 
   return (
     <SidebarContainer>
       <SidebarMenu open={open}>{children}</SidebarMenu>
-      <SidebarDark open={open} />
+      <SidebarDark open={open} onClick={() => onHandleOpen(false)} />
     </SidebarContainer>
   );
 };
