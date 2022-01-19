@@ -1,7 +1,7 @@
 import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import { Header, Sidebar } from "./layout";
+import { Footer, Header, Sidebar } from "./layout";
 
 const App = () => {
   const [open, setOpen] = useState(false);
@@ -27,6 +27,7 @@ const App = () => {
           사디으바 반대편입니다.
         </div>
       </div>
+      <Footer>&copy; Codiving</Footer>
     </div>
   );
 };
