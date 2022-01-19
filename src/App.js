@@ -1,19 +1,39 @@
-import { useCallback, useState } from "react";
+import { VideoList } from "components";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Footer, Header, Sidebar } from "./layout";
 
-const App = () => {
+const App = props => {
+  const { youtube } = props;
   const [open, setOpen] = useState(false);
+  const [videos, setVideos] = useState([]);
+  const [pageToken, setPageToken] = useState(null);
+  const searchRef = useRef(null);
 
   const onHandleOpen = useCallback(newOpen => setOpen(newOpen), []);
+
+  const searchVideos = word => {
+    youtube.searchVideos(word, pageToken).then(console.log);
+  };
+
+  useEffect(() => {
+    youtube.searchMostPopular().then(result => {
+      const { nextPageToken, videos } = result;
+
+      setVideos(videos);
+      setPageToken(nextPageToken);
+    });
+  }, [youtube]);
 
   return (
     <div>
       <Sidebar open={open} onHandleOpen={onHandleOpen} />
       <div>
-        <Header onHandleOpen={onHandleOpen} />
-        <div style={{ width: 700, textAlign: "center" }}>
-          사디으바 반대편입니다.
-        </div>
+        <Header
+          onHandleOpen={onHandleOpen}
+          searchRef={searchRef}
+          searchVideos={searchVideos}
+        />
+        <VideoList videos={videos} />
       </div>
       <Footer>&copy; Codiving</Footer>
     </div>

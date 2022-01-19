@@ -152,7 +152,7 @@ const PersonalInfoContainer = styled("div")(() => {
 });
 
 const Header = props => {
-  const { onHandleOpen } = props;
+  const { onHandleOpen, searchRef, searchVideos } = props;
   return (
     <HeaderContainer>
       <HeaderLeft>
@@ -176,7 +176,16 @@ const Header = props => {
       </HeaderLeft>
       <HeaderMid>
         <InputContainer>
-          <Input placeholder="검색" />
+          <Input
+            placeholder="검색"
+            ref={searchRef}
+            onKeyPress={e => {
+              if (e.key === "Enter") {
+                searchVideos(searchRef.current.value);
+                searchRef.current.value = "";
+              }
+            }}
+          />
           <InputInnerIcon icon={faTimes} right={35} />
           <InputInnerIcon icon={faKeyboard} right={10} />
           <InputSearchContainer>
