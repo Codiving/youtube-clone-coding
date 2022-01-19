@@ -139,6 +139,21 @@ const HeaderRight = styled("div")(() => {
   return {};
 });
 
+const Link = styled("a")(() => {
+  return {
+    textDecoration: "none"
+  };
+});
+
+const PersonalInfoContainer = styled("div")(() => {
+  return {
+    padding: 8,
+    backgroundColor: "lightgray",
+    borderRadius: 24,
+    color: "white"
+  };
+});
+
 const Header = props => {
   const { onHandleOpen } = props;
   return (
@@ -166,7 +181,17 @@ const Header = props => {
         </InputContainer>
         <MicrophoneIcon icon={faMicrophone} />
       </HeaderMid>
-      <HeaderRight>오른쪽 영역</HeaderRight>
+      <HeaderRight>
+        <Link
+          href="https://www.github.com/Codiving"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <PersonalInfoContainer>
+            <span>Codiving</span>
+          </PersonalInfoContainer>
+        </Link>
+      </HeaderRight>
     </HeaderContainer>
   );
 };
