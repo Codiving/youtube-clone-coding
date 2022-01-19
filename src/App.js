@@ -1,26 +1,14 @@
-import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Footer, Header, Sidebar } from "./layout";
 
 const App = () => {
   const [open, setOpen] = useState(false);
 
-  const onHandleOpen = newOpen => setOpen(newOpen);
+  const onHandleOpen = useCallback(newOpen => setOpen(newOpen), []);
 
   return (
     <div>
-      <Sidebar open={open} onHandleOpen={onHandleOpen}>
-        <FontAwesomeIcon
-          icon={faAngleLeft}
-          size="3x"
-          onClick={() => setOpen(false)}
-        />
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-      </Sidebar>
+      <Sidebar open={open} onHandleOpen={onHandleOpen} />
       <div>
         <Header onHandleOpen={onHandleOpen} />
         <div style={{ width: 700, textAlign: "center" }}>

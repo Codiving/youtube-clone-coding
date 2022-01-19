@@ -1,4 +1,12 @@
 import styled from "@emotion/styled";
+import {
+  faClock,
+  faHistory,
+  faHome,
+  faTimes
+} from "@fortawesome/free-solid-svg-icons";
+import { Icon } from "components";
+import { useCallback } from "react";
 
 const width = 240;
 
@@ -13,10 +21,35 @@ const SidebarMenu = styled("div")(props => {
     left: open ? 0 : -width,
     width: width,
     height: "100%",
-    background: "#fcc",
+    background: "#fff",
     zIndex: 3,
     transitionProperty: "left",
-    transitionDuration: "0.2s"
+    transitionDuration: "0.2s",
+    padding: "1em 0"
+  };
+});
+
+const SidebarIconWrap = styled("div")(() => {
+  return {
+    textAlign: "right",
+    margin: "0 1em 1em 0"
+  };
+});
+
+const SidebarListWrap = styled("ul")(() => {});
+
+const SidebarItem = styled("li")(() => {
+  return {
+    padding: "10px",
+    display: "flex",
+    alignItems: "center",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "lightgray"
+    },
+    "& > svg": {
+      marginRight: 15
+    }
   };
 });
 
@@ -41,12 +74,32 @@ const SidebarDark = styled("div")(props => {
 });
 
 const Sidebar = props => {
-  const { children, open, onHandleOpen } = props;
+  const { open, onHandleOpen } = props;
+
+  const onClose = useCallback(() => onHandleOpen(false), [onHandleOpen]);
 
   return (
     <SidebarContainer>
-      <SidebarMenu open={open}>{children}</SidebarMenu>
-      <SidebarDark open={open} onClick={() => onHandleOpen(false)} />
+      <SidebarMenu open={open}>
+        <SidebarIconWrap>
+          <Icon icon={faTimes} width={32} height={32} onClick={onClose} />
+        </SidebarIconWrap>
+        <SidebarListWrap>
+          <SidebarItem>
+            <Icon icon={faHome} width={28} height={28} />
+            <span>Home</span>
+          </SidebarItem>
+          <SidebarItem>
+            <Icon icon={faHistory} width={24} height={24} />
+            <span style={{ marginLeft: 4 }}>시청 기록</span>
+          </SidebarItem>
+          <SidebarItem>
+            <Icon icon={faClock} width={24} height={24} />
+            <span style={{ marginLeft: 4 }}>보관함</span>
+          </SidebarItem>
+        </SidebarListWrap>
+      </SidebarMenu>
+      <SidebarDark open={open} onClick={onClose} />
     </SidebarContainer>
   );
 };
