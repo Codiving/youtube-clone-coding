@@ -16,6 +16,17 @@ const iconSize = {
 
 const searchContainerWidth = 60;
 
+// common
+const Icon = styled(FontAwesomeIcon)(props => {
+  const { width = iconSize.width, height = iconSize.height } = props;
+  return {
+    width: `${width}px !important`,
+    height,
+    cursor: "pointer"
+  };
+});
+
+// main
 const HeaderContainer = styled("div")(() => {
   return {
     height: 56,
@@ -39,7 +50,8 @@ const YoutubeLogo = styled("div")(() => {
     display: "flex",
     alignItems: "center",
     position: "relative",
-    marginLeft: 30
+    marginLeft: 30,
+    cursor: "pointer"
   };
 });
 
@@ -69,13 +81,15 @@ const HeaderMid = styled("div")(() => {
     alignItems: "center",
     justifyContent: "center",
     flex: 1,
-    height: 40
+    height: 40,
+    minWidth: 240
   };
 });
 
 const InputContainer = styled("div")(() => {
   return {
     width: "60%",
+    minWidth: 140,
     maxWidth: 600,
     height: "inherit",
     position: "relative",
@@ -87,7 +101,10 @@ const InputContainer = styled("div")(() => {
 const Input = styled("input")(() => {
   return {
     width: `calc(100% - ${searchContainerWidth}px)`,
-    height: "inherit"
+    height: "inherit",
+    border: "1px solid #ccc",
+    borderRadius: 0,
+    paddingRight: searchContainerWidth
   };
 });
 
@@ -98,7 +115,8 @@ const InputInnerIcon = styled(FontAwesomeIcon)(props => {
     width: `${width}px !important`,
     height,
     position: "absolute",
-    right: `calc(${searchContainerWidth}px + ${right}px)`
+    right: `calc(${searchContainerWidth}px + ${right}px)`,
+    cursor: "pointer"
   };
 });
 
@@ -106,21 +124,13 @@ const InputSearchContainer = styled("div")(() => {
   return {
     width: `${searchContainerWidth}px !important`,
     height: "inherit",
-    border: "1px solid",
+    border: "1px solid #ccc",
     borderLeft: "none",
     background: "lightgray",
     display: "flex",
     alignItems: "center",
-    justifyContent: "center"
-  };
-});
-
-const InputSearchIcon = styled(FontAwesomeIcon)(() => {
-  const { width, height } = iconSize;
-  return {
-    width: `${width}px !important`,
-    height,
-    position: "absolute"
+    justifyContent: "center",
+    cursor: "pointer"
   };
 });
 
@@ -131,7 +141,8 @@ const MicrophoneIcon = styled(FontAwesomeIcon)(() => {
     backgroundColor: "rgb(230, 230, 230)",
     padding: 10,
     marginLeft: 10,
-    borderRadius: 24
+    borderRadius: 24,
+    cursor: "pointer"
   };
 });
 
@@ -159,13 +170,20 @@ const Header = props => {
   return (
     <HeaderContainer>
       <HeaderLeft>
-        <FontAwesomeIcon
-          style={{ fontSize: 24 }}
+        <Icon
+          width={24}
+          height={24}
           icon={faBars}
           onClick={() => onHandleOpen(true)}
         />
         <YoutubeLogo>
-          <FontAwesomeIcon icon={faYoutube} size="2x" color="red" />
+          <Icon
+            width={24}
+            height={24}
+            icon={faYoutube}
+            color="red"
+            onClick={() => onHandleOpen(true)}
+          />
           <YoutubeText>YouTube</YoutubeText>
           <YoutubeLang>KR</YoutubeLang>
         </YoutubeLogo>
@@ -176,7 +194,7 @@ const Header = props => {
           <InputInnerIcon icon={faTimes} right={35} />
           <InputInnerIcon icon={faKeyboard} right={10} />
           <InputSearchContainer>
-            <InputSearchIcon icon={faSearch} />
+            <Icon icon={faSearch} />
           </InputSearchContainer>
         </InputContainer>
         <MicrophoneIcon icon={faMicrophone} />
