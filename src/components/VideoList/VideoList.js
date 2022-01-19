@@ -2,17 +2,15 @@ import styled from "@emotion/styled";
 
 const VideoListContainer = styled("div")(() => {
   return {
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    gap: "3em 2em",
-    padding: "2em 0 4em"
+    display: "grid",
+    gridTemplateColumns: "repeat(4, 1fr)",
+    gridGap: "3em 2em",
+    padding: "2em 4em"
   };
 });
 
 const VideoWrap = styled("div")(() => {
   return {
-    width: "23%",
     cursor: "pointer",
     transition: "transform 250ms ease-in",
     "&:hover": {

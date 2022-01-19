@@ -12,7 +12,12 @@ const App = props => {
   const onHandleOpen = useCallback(newOpen => setOpen(newOpen), []);
 
   const searchVideos = word => {
-    youtube.searchVideos(word, pageToken).then(console.log);
+    youtube.searchVideos(word, pageToken).then(result => {
+      const { nextPageToken, videos } = result;
+
+      setVideos(videos);
+      setPageToken(nextPageToken);
+    });
   };
 
   useEffect(() => {
