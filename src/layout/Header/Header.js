@@ -8,25 +8,11 @@ import {
   faTimes
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-const iconSize = {
-  width: 20,
-  height: 20
-};
+import { Icon } from "components";
+import { IconSize } from "components/Icon/Icon";
 
 const searchContainerWidth = 60;
 
-// common
-const Icon = styled(FontAwesomeIcon)(props => {
-  const { width = iconSize.width, height = iconSize.height } = props;
-  return {
-    width: `${width}px !important`,
-    height,
-    cursor: "pointer"
-  };
-});
-
-// main
 const HeaderContainer = styled("div")(() => {
   return {
     height: 56,
@@ -110,7 +96,7 @@ const Input = styled("input")(() => {
 
 const InputInnerIcon = styled(FontAwesomeIcon)(props => {
   const { right } = props;
-  const { width, height } = iconSize;
+  const { width, height } = IconSize;
   return {
     width: `${width}px !important`,
     height,
