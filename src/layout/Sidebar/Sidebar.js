@@ -24,7 +24,7 @@ const SidebarMenu = styled("div")(props => {
     background: "#fff",
     zIndex: 3,
     transitionProperty: "left",
-    transitionDuration: "0.2s",
+    transitionDuration: "0.3s",
     padding: "1em 0"
   };
 });
@@ -55,21 +55,27 @@ const SidebarItem = styled("li")(() => {
 
 const SidebarDark = styled("div")(props => {
   const { open } = props;
-  if (!open) {
-    return {
-      display: "none"
-    };
-  }
+
+  const css = open
+    ? {
+        visibility: "visible",
+        opacity: 0.7
+      }
+    : {
+        visibility: "hidden",
+        opacity: 0
+      };
 
   return {
     backgroundColor: "black",
-    opacity: 0.3,
     position: "absolute",
     top: 0,
     right: 0,
     bottom: 0,
     left: 0,
-    zIndex: 2
+    zIndex: 2,
+    transition: "0.3s ease-in-out",
+    ...css
   };
 });
 
