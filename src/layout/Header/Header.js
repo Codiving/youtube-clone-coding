@@ -160,20 +160,9 @@ const Header = props => {
   return (
     <HeaderContainer>
       <HeaderLeft>
-        <Icon
-          width={24}
-          height={24}
-          icon={faBars}
-          onClick={() => onHandleOpen(true)}
-        />
+        <Icon width={24} height={24} icon={faBars} onClick={onHandleOpen} />
         <YoutubeLogo>
-          <Icon
-            width={24}
-            height={24}
-            icon={faYoutube}
-            color="red"
-            onClick={() => onHandleOpen(true)}
-          />
+          <Icon width={24} height={24} icon={faYoutube} color="red" />
           <YoutubeText>YouTube</YoutubeText>
           <YoutubeLang>KR</YoutubeLang>
         </YoutubeLogo>

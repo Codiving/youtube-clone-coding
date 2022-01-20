@@ -1,10 +1,5 @@
 import styled from "@emotion/styled";
-import {
-  faClock,
-  faHistory,
-  faHome,
-  faTimes
-} from "@fortawesome/free-solid-svg-icons";
+import { faClock, faHistory, faHome } from "@fortawesome/free-solid-svg-icons";
 import { Icon } from "components";
 import { useCallback } from "react";
 
@@ -25,14 +20,7 @@ const SidebarMenu = styled("div")(props => {
     zIndex: 3,
     transitionProperty: "left",
     transitionDuration: "0.3s",
-    padding: "1em 0"
-  };
-});
-
-const SidebarIconWrap = styled("div")(() => {
-  return {
-    textAlign: "right",
-    margin: "0 1em 1em 0"
+    padding: "56px 0"
   };
 });
 
@@ -80,16 +68,11 @@ const SidebarDark = styled("div")(props => {
 });
 
 const Sidebar = props => {
-  const { open, onHandleOpen } = props;
-
-  const onClose = useCallback(() => onHandleOpen(false), [onHandleOpen]);
+  const { open, onClose } = props;
 
   return (
     <SidebarContainer>
       <SidebarMenu open={open}>
-        <SidebarIconWrap>
-          <Icon icon={faTimes} width={32} height={32} onClick={onClose} />
-        </SidebarIconWrap>
         <SidebarListWrap>
           <SidebarItem>
             <Icon icon={faHome} width={28} height={28} />

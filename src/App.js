@@ -11,7 +11,9 @@ const App = props => {
   const [videos, setVideos] = useState([]);
   const searchRef = useRef(null);
 
-  const onHandleOpen = useCallback(newOpen => setOpen(newOpen), []);
+  const onHandleOpen = useCallback(() => setOpen(prev => !prev), []);
+
+  const onClose = useCallback(() => setOpen(false), []);
 
   const searchVideos = word => {
     youtube.searchVideos(word, pageToken).then(result => {
@@ -33,7 +35,7 @@ const App = props => {
 
   return (
     <div>
-      <Sidebar open={open} onHandleOpen={onHandleOpen} />
+      <Sidebar open={open} onClose={onClose} />
       <div>
         <Header
           onHandleOpen={onHandleOpen}
