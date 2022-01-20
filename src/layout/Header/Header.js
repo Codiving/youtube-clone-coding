@@ -20,7 +20,11 @@ const HeaderContainer = styled("div")(() => {
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",
-    borderBottom: "1px solid lightgray"
+    borderBottom: "1px solid lightgray",
+    position: "sticky",
+    top: 0,
+    backgroundColor: "white",
+    zIndex: 3
   };
 });
 
