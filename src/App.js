@@ -1,12 +1,14 @@
-import { VideoList } from "components";
+import { Video, VideoList } from "components";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Footer, Header, Sidebar } from "./layout";
+import { Footer, Header, Main, Sidebar } from "./layout";
 
 const App = props => {
   const { youtube } = props;
   const [open, setOpen] = useState(false);
-  const [videos, setVideos] = useState([]);
   const [pageToken, setPageToken] = useState(null);
+
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [videos, setVideos] = useState([]);
   const searchRef = useRef(null);
 
   const onHandleOpen = useCallback(newOpen => setOpen(newOpen), []);
@@ -38,7 +40,14 @@ const App = props => {
           searchRef={searchRef}
           searchVideos={searchVideos}
         />
-        <VideoList videos={videos} />
+        <Main>
+          {selectedVideo && <Video selectedVideo={selectedVideo} />}
+          <VideoList
+            videos={videos}
+            onVideoClick={newVideo => setSelectedVideo(newVideo)}
+            selectedVideo={selectedVideo}
+          />
+        </Main>
       </div>
       <Footer>&copy; Codiving</Footer>
     </div>

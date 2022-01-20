@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
 
-const VideoListContainer = styled("div")(() => {
+const VideoListContainer = styled("div")(props => {
+  const { selectedVideo } = props;
   return {
     display: "grid",
-    gridTemplateColumns: "repeat(4, 1fr)",
+    gridTemplateColumns: `repeat(${selectedVideo ? 1 : 4}, 1fr)`,
     gridGap: "3em 2em",
-    padding: "2em 4em"
+    maxWidth: !selectedVideo ? "auto" : 300
   };
 });
 
@@ -39,10 +40,10 @@ const VideoMetaWrap = styled("div")(() => {
 });
 
 const VideoList = props => {
-  const { videos } = props;
+  const { videos, onVideoClick, selectedVideo } = props;
   return (
-    <VideoListContainer>
-      {videos.map(item => {
+    <VideoListContainer selectedVideo={selectedVideo}>
+      {(selectedVideo ? videos.slice(0, 5) : videos).map(video => {
         const {
           snippet: {
             channelTitle,
@@ -52,9 +53,9 @@ const VideoList = props => {
               id
             }
           }
-        } = item;
+        } = video;
         return (
-          <VideoWrap key={id}>
+          <VideoWrap key={id} onClick={() => onVideoClick(video)}>
             <VideoThumbnail alt={title} src={`${url}`} />
             <VideoMetaWrap>
               <p className="title">{title}</p>
