@@ -11,6 +11,8 @@ const App = props => {
   const [videos, setVideos] = useState([]);
   const searchRef = useRef(null);
 
+  const onHandleEmptyVideo = () => setSelectedVideo(null);
+
   const onHandleOpen = useCallback(() => setOpen(prev => !prev), []);
 
   const onClose = useCallback(() => setOpen(false), []);
@@ -35,12 +37,17 @@ const App = props => {
 
   return (
     <div>
-      <Sidebar open={open} onClose={onClose} />
+      <Sidebar
+        open={open}
+        onClose={onClose}
+        onHandleEmptyVideo={onHandleEmptyVideo}
+      />
       <div>
         <Header
           onHandleOpen={onHandleOpen}
           searchRef={searchRef}
           searchVideos={searchVideos}
+          onHandleEmptyVideo={onHandleEmptyVideo}
         />
         <Main>
           {selectedVideo && <Video selectedVideo={selectedVideo} />}

@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { faClock, faHistory, faHome } from "@fortawesome/free-solid-svg-icons";
 import { Icon } from "components";
-import { useCallback } from "react";
 
 const width = 240;
 
@@ -68,13 +67,18 @@ const SidebarDark = styled("div")(props => {
 });
 
 const Sidebar = props => {
-  const { open, onClose } = props;
+  const { open, onClose, onHandleEmptyVideo } = props;
 
   return (
     <SidebarContainer>
       <SidebarMenu open={open}>
         <SidebarListWrap>
-          <SidebarItem>
+          <SidebarItem
+            onClick={() => {
+              onHandleEmptyVideo();
+              onClose();
+            }}
+          >
             <Icon icon={faHome} width={28} height={28} />
             <span>Home</span>
           </SidebarItem>

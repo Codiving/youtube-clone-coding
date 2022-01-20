@@ -156,12 +156,12 @@ const PersonalInfoContainer = styled("div")(() => {
 });
 
 const Header = props => {
-  const { onHandleOpen, searchRef, searchVideos } = props;
+  const { onHandleOpen, searchRef, searchVideos, onHandleEmptyVideo } = props;
   return (
     <HeaderContainer>
       <HeaderLeft>
         <Icon width={24} height={24} icon={faBars} onClick={onHandleOpen} />
-        <YoutubeLogo>
+        <YoutubeLogo onClick={onHandleEmptyVideo}>
           <Icon width={24} height={24} icon={faYoutube} color="red" />
           <YoutubeText>YouTube</YoutubeText>
           <YoutubeLang>KR</YoutubeLang>
